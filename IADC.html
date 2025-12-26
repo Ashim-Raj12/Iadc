@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IADC Verification</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+
+body{
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    background:white;
+    width:750px;
+    max-width:90%;
+    padding:30px;
+    border-radius:6px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:left;
+}
+
+.center{text-align:center;margin-bottom:20px;}
+
+img{
+    width:90px;
+    margin-bottom:10px;
+}
+
+.title{
+    margin:15px 0;
+    font-size:18px;
+    color:#861327;
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:16px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+label{font-size:16px;}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#861327;
+    border:none;
+    color:white;
+    border-radius:6px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    font-size:16px;
+}
+
+td{
+    padding:12px 0;
+    border-bottom:1px solid #ddd;
+}
+
+.name{font-weight:bold;}
+
+
+/* ----------- MOBILE VIEW ----------- */
+@media(max-width:768px){
+    body{
+        align-items:flex-start;
+        padding-top:40px;
+    }
+    .card{
+        width:95%;
+        padding:25px;
+    }
+    img{
+        width:85px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="card" id="searchPage">
+    <div class="center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/IADC_Logo.png">
+        <h2>IADC</h2>
+    </div>
+
+    <p class="title">Enter Student Certificate ID or Instructor Number</p>
+
+    <input type="text" id="certificate">
+
+    <div style="margin-bottom:15px;">
+        <input type="checkbox"> <label>Instructor</label>
+    </div>
+
+    <button onclick="search()">Search</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card" id="resultPage" style="display:none;">
+    <div class="center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/IADC_Logo.png">
+        <h2>IADC</h2>
+    </div>
+
+    <table>
+        <tr><td>Certificate ID:</td><td class="name" id="cid"></td></tr>
+        <tr><td>Name:</td><td id="name"></td></tr>
+        <tr><td>Completed On:</td><td>14 January 2025</td></tr>
+        <tr><td>Expires On:</td><td>14 January 2027</td></tr>
+        <tr><td>Program:</td><td>Drilling Operations, Driller, Surface</td></tr>
+        <tr><td>Provider:</td><td>Eagle Well Control</td></tr>
+        <tr><td>Status:</td><td>Active</td></tr>
+    </table>
+
+    <br>
+    <button onclick="goBack()">Go Back</button>
+</div>
+
+<script>
+
+// Set default value (NO animation)
+const defaultID = "A8DD15F6-B68D00";
+document.getElementById("certificate").value = defaultID;
+
+// Auto open Page 2 after 3 seconds
+setTimeout(()=>{
+    search();
+},3000);
+
+
+// SEARCH
+function search(){
+    let id = document.getElementById("certificate").value.trim().toUpperCase();
+
+    if(id === "A8DD15F6-B68D00"){
+        document.getElementById("cid").innerText = id;
+        document.getElementById("name").innerText = "Rakesh Dubey";
+        document.getElementById("searchPage").style.display = "none";
+        document.getElementById("resultPage").style.display = "block";
+    } else {
+        alert("Certificate Not Found");
+    }
+}
+
+
+// GO BACK
+function goBack(){
+    document.getElementById("resultPage").style.display = "none";
+    document.getElementById("searchPage").style.display = "block";
+}
+</script>
+
+</body>
+</html>
